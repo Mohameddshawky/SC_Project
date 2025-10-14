@@ -1,3 +1,3 @@
-# Genetic Algorithm Library
+# Java Genetic Algorithm Library
 
-A simple, modular, and extensible Genetic Algorithm library in Java.
+A modular and extensible Genetic Algorithm (GA) library written in Java. This project provides a clean architecture for building and solving optimization problems using genetic algorithms.
