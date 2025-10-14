@@ -3,39 +3,39 @@ package ga.chromosome;
 import java.util.List;
 
 /**
- * A chromosome represented by a list of integers.
+ * A chromosome represented by a list of floating-point numbers.
  */
-public class IntegerChromosome implements Chromosome<Integer> {
+public class FloatingPointChromosome implements Chromosome<Double> {
 
-    private List<Integer> genes;
-    private int min;
-    private int max;
+    private List<Double> genes;
+    private double min;
+    private double max;
 
     /**
-     * Constructor to create an integer chromosome.
+     * Constructor to create a floating-point chromosome.
      * @param length The length of the chromosome.
      * @param min The minimum value of a gene.
      * @param max The maximum value of a gene.
      */
-    public IntegerChromosome(int length, int min, int max) {
+    public FloatingPointChromosome(int length, double min, double max) {
         // Implementation omitted.
     }
 
     /**
-     * Constructor to create an integer chromosome with given genes.
+     * Constructor to create a floating-point chromosome with given genes.
      * @param genes The genes of the chromosome.
      */
-    public IntegerChromosome(List<Integer> genes) {
+    public FloatingPointChromosome(List<Double> genes) {
         // Implementation omitted.
     }
 
     @Override
-    public Chromosome<Integer> clone() {
+    public Chromosome<Double> clone() {
         return null;
     }
 
     @Override
-    public List<Integer> getGenes() {
+    public List<Double> getGenes() {
         return null;
     }
 

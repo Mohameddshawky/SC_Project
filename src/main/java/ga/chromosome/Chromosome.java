@@ -3,30 +3,28 @@ package ga.chromosome;
 import java.util.List;
 
 /**
- * Represents a chromosome in a genetic algorithm.
- *
- * @param <T> the type of the genes in the chromosome
+ * An interface representing a chromosome, which is a collection of genes.
+ * @param <T> The type of the genes in the chromosome.
  */
 public interface Chromosome<T> {
+
     /**
-     * Returns the list of genes that make up the chromosome.
-     *
-     * @return the list of genes
+     * @return A deep copy of the chromosome.
+     */
+    Chromosome<T> clone();
+
+    /**
+     * @return The list of genes that make up the chromosome.
      */
     List<T> getGenes();
 
     /**
-     * Creates a new chromosome with the given genes.
-     *
-     * @param genes the list of genes
-     * @return a new chromosome
-     */
-    Chromosome<T> newChromosome(List<T> genes);
-
-    /**
-     * Returns the length of the chromosome.
-     *
-     * @return the length of the chromosome
+     * @return The length of the chromosome.
      */
     int getLength();
+
+    /**
+     * Mutates the chromosome.
+     */
+    void mutate();
 }

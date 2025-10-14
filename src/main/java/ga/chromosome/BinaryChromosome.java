@@ -1,38 +1,47 @@
 package ga.chromosome;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 /**
- * A binary chromosome, where genes are represented by Booleans.
+ * A chromosome represented by a list of booleans (0s and 1s).
  */
 public class BinaryChromosome implements Chromosome<Boolean> {
-    private final List<Boolean> genes;
 
+    private List<Boolean> genes;
+
+    /**
+     * Constructor to create a binary chromosome of a given length.
+     * @param length The length of the chromosome.
+     */
+    public BinaryChromosome(int length) {
+        // Implementation omitted.
+    }
+
+    /**
+     * Constructor to create a binary chromosome with given genes.
+     * @param genes The genes of the chromosome.
+     */
     public BinaryChromosome(List<Boolean> genes) {
-        this.genes = genes;
+        // Implementation omitted.
+    }
+
+    @Override
+    public Chromosome<Boolean> clone() {
+        return null;
     }
 
     @Override
     public List<Boolean> getGenes() {
-        return genes;
-    }
-
-    @Override
-    public Chromosome<Boolean> newChromosome(List<Boolean> genes) {
-        return new BinaryChromosome(genes);
+        return null;
     }
 
     @Override
     public int getLength() {
-        return genes.size();
+        return 0;
     }
 
     @Override
-    public String toString() {
-        return genes.stream()
-                .map(g -> g ? "1" : "0")
-                .collect(Collectors.joining());
+    public void mutate() {
+        // Implementation omitted.
     }
 }
