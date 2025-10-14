@@ -1,4 +1,4 @@
-package ga.chromosome;
+package src.main.java.ga.chromosome;
 
 import java.util.List;
 

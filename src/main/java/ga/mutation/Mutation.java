@@ -1,6 +1,7 @@
-package ga.mutation;
+package src.main.java.ga.mutation;
 
-import ga.chromosome.Chromosome;
+
+import src.main.java.ga.chromosome.Chromosome;
 
 /**
  * A mutation operator.

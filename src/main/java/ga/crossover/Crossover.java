@@ -1,6 +1,8 @@
-package ga.crossover;
+package src.main.java.ga.crossover;
 
-import ga.chromosome.Chromosome;
+
+
+import src.main.java.ga.chromosome.Chromosome;
 
 import java.util.List;
 

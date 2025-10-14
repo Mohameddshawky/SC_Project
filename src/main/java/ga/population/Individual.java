@@ -1,6 +1,7 @@
-package ga.population;
+package src.main.java.ga.population;
 
-import ga.chromosome.Chromosome;
+
+import src.main.java.ga.chromosome.Chromosome;
 
 /**
  * Represents a single individual in the population.

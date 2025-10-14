@@ -1,11 +1,16 @@
-package ga.core;
+package src.main.java.ga.core;
 
-import ga.crossover.Crossover;
-import ga.evaluation.Evaluation;
-import ga.mutation.Mutation;
+
+
 import ga.population.Population;
-import ga.replacement.Replacement;
-import ga.selection.Selection;
+
+
+import src.main.java.ga.core.GAConfig;
+import src.main.java.ga.crossover.Crossover;
+import src.main.java.ga.evaluation.Evaluation;
+import src.main.java.ga.mutation.Mutation;
+import src.main.java.ga.replacement.Replacement;
+import src.main.java.ga.selection.Selection;
 
 /**
  * The main engine for the Genetic Algorithm.

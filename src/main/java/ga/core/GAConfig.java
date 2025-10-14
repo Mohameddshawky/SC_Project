@@ -1,10 +1,10 @@
-package ga.core;
+package src.main.java.ga.core;
 
 /**
  * Holds all the hyperparameters and configuration settings for the Genetic Algorithm.
  * <p>
  * This class is a simple data container (POJO) to provide configuration to the
- * {@link GeneticAlgorithm} engine.
+ *  engine.
  */
 public class GAConfig {
 

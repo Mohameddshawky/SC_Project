@@ -1,4 +1,4 @@
-package ga.utils;
+package src.main.java.ga.utils;
 
 import java.util.Random;
 
