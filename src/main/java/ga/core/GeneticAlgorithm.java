@@ -1,46 +1,83 @@
 package ga.core;
 
+import ga.crossover.Crossover;
+import ga.evaluation.Evaluation;
+import ga.mutation.Mutation;
 import ga.population.Population;
-import ga.chromosome.Chromosome;
-import ga.selection.SelectionStrategy;
-import ga.crossover.CrossoverStrategy;
-import ga.mutation.MutationStrategy;
-import ga.replacement.ReplacementStrategy;
-import ga.evaluation.FitnessEvaluator;
+import ga.replacement.Replacement;
+import ga.selection.Selection;
 
 /**
  * The main engine for the Genetic Algorithm.
- * It orchestrates the entire evolutionary process.
- * @param <T> The type of gene in the chromosome.
+ * <p>
+ * This class orchestrates the entire GA process, from initialization to termination.
+ * It uses dependency injection to allow for flexible configuration of different
+ * strategies for selection, crossover, mutation, and replacement.
+ *
+ * @param <T> The type of the gene in the chromosomes.
  */
 public class GeneticAlgorithm<T> {
 
     private final GAConfig config;
-    private final FitnessEvaluator<T> fitnessEvaluator;
-    private final SelectionStrategy<T> selectionStrategy;
-    private final CrossoverStrategy<T> crossoverStrategy;
-    private final MutationStrategy<T> mutationStrategy;
-    private final ReplacementStrategy<T> replacementStrategy;
+    private final Evaluation<T> evaluation;
+    private final Selection<T> selection;
+    private final Crossover<T> crossover;
+    private final Mutation<T> mutation;
+    private final Replacement<T> replacement;
 
     /**
-     * Constructor to initialize the Genetic Algorithm with its components.
-     * @param config The configuration for the GA.
-     * @param fitnessEvaluator The fitness evaluator.
-     * @param selectionStrategy The selection strategy.
-     * @param crossoverStrategy The crossover strategy.
-     * @param mutationStrategy The mutation strategy.
-     * @param replacementStrategy The replacement strategy.
+     * Constructor to create a new Genetic Algorithm instance.
+     *
+     * @param config      The configuration settings.
+     * @param evaluation  The evaluation strategy.
+     * @param selection   The selection strategy.
+     * @param crossover   The crossover strategy.
+     * @param mutation    The mutation strategy.
+     * @param replacement The replacement strategy.
      */
-    public GeneticAlgorithm(GAConfig config, FitnessEvaluator<T> fitnessEvaluator, SelectionStrategy<T> selectionStrategy, CrossoverStrategy<T> crossoverStrategy, MutationStrategy<T> mutationStrategy, ReplacementStrategy<T> replacementStrategy) {
-        // Implementation omitted.
+    public GeneticAlgorithm(GAConfig config, Evaluation<T> evaluation, Selection<T> selection,
+                            Crossover<T> crossover, Mutation<T> mutation, Replacement<T> replacement) {
+        this.config = config;
+        this.evaluation = evaluation;
+        this.selection = selection;
+        this.crossover = crossover;
+        this.mutation = mutation;
+        this.replacement = replacement;
     }
 
     /**
      * Runs the genetic algorithm.
-     * @return The best individual found.
+     *
+     * @return The final, evolved population.
      */
-    public ga.population.Individual<T> run() {
-        // Implementation omitted.
-        return null;
+    public Population<T> run() {
+        // 1. Initialize population
+        // 2. Loop for max generations
+        //    a. Evaluate fitness
+        //    b. Select parents
+        //    c. Crossover
+        //    d. Mutate
+        //    e. Replace population
+        // 3. Return best solution
+        return null; // Implementation omitted.
+    }
+
+    /**
+     * Initializes the population.
+     *
+     * @return The initial population.
+     */
+    private Population<T> initializePopulation() {
+        return null; // Implementation omitted.
+    }
+
+    /**
+     * Evolves the population for one generation.
+     *
+     * @param population The current population.
+     * @return The next generation's population.
+     */
+    private Population<T> evolve(Population<T> population) {
+        return null; // Implementation omitted.
     }
 }

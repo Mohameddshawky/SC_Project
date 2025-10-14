@@ -1,50 +1,62 @@
 package ga.population;
 
-import ga.chromosome.Chromosome;
+import ga.population.Individual;
 import java.util.List;
 
 /**
- * Represents a collection of individuals (a population).
- * @param <T> The type of gene in the chromosomes of the individuals.
+ * Represents a collection of individuals.
+ * <p>
+ * The population holds all the candidate solutions for a given generation.
+ *
+ * @param <T> The type of the gene in the chromosomes of the individuals.
  */
 public class Population<T> {
 
+    /**
+     * The list of individuals in the population.
+     */
     private List<Individual<T>> individuals;
 
     /**
-     * Default constructor.
-     */
-    public Population() {
-        // Implementation omitted.
-    }
-
-    /**
-     * Constructor to create a population with a given size.
-     * @param populationSize The size of the population.
+     * Constructor to create a population of a given size.
+     *
+     * @param populationSize The number of individuals to create.
      */
     public Population(int populationSize) {
         // Implementation omitted.
     }
 
     /**
-     * @return The individuals in the population.
+     * Initializes the population with random individuals.
      */
-    public List<Individual<T>> getIndividuals() {
-        return null;
+    public void initialize() {
+        // Implementation omitted.
     }
 
     /**
-     * @return The size of the population.
+     * Gets the list of individuals in the population.
+     *
+     * @return The list of individuals.
      */
-    public int size() {
-        return 0;
+    public List<Individual<T>> getIndividuals() {
+        return null; // Implementation omitted.
     }
 
     /**
      * Gets the fittest individual in the population.
-     * @return The fittest individual.
+     *
+     * @return The individual with the highest fitness score.
      */
-    public Individual<T> getFittest() {
-        return null;
+    public Individual<T> getFittestIndividual() {
+        return null; // Implementation omitted.
+    }
+
+    /**
+     * Gets the size of the population.
+     *
+     * @return The number of individuals.
+     */
+    public int size() {
+        return 0; // Implementation omitted.
     }
 }
