@@ -1,51 +1,59 @@
 package src.main.java.ga.chromosome;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-/**
- * A chromosome represented by a list of floating-point numbers.
- */
 public class FloatingPointChromosome implements Chromosome<Double> {
-
     private List<Double> genes;
-    private double min;
-    private double max;
-
-    /**
-     * Constructor to create a floating-point chromosome.
-     * @param length The length of the chromosome.
-     * @param min The minimum value of a gene.
-     * @param max The maximum value of a gene.
-     */
+    private double minValue;
+    private double maxValue;
     public FloatingPointChromosome(int length, double min, double max) {
-        // Implementation omitted.
+        this.genes = new ArrayList<>(length);
+        this.minValue = min;
+        this.maxValue = max;
+        Random random = new Random();
+
+        for (int i = 0; i < length; i++) {
+            double gene = minValue + (maxValue - minValue) * random.nextDouble();
+            genes.add(gene);
+        }
+    }
+    public FloatingPointChromosome(int length) {
+        this(length, 0.0, 1.0);
     }
 
-    /**
-     * Constructor to create a floating-point chromosome with given genes.
-     * @param genes The genes of the chromosome.
-     */
     public FloatingPointChromosome(List<Double> genes) {
-        // Implementation omitted.
+        this.genes = new ArrayList<>(genes);
+        this.minValue = 0.0;
+        this.maxValue = 1.0;
     }
 
     @Override
     public Chromosome<Double> clone() {
-        return null;
+        return new FloatingPointChromosome(new ArrayList<>(genes));
     }
 
     @Override
     public List<Double> getGenes() {
-        return null;
+        return genes;
     }
 
     @Override
     public int getLength() {
-        return 0;
+        return genes.size();
     }
 
     @Override
     public void mutate() {
-        // Implementation omitted.
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("FloatingPointChromosome: ");
+        for (double gene : genes) {
+            sb.append(String.format("%.3f ", gene));
+        }
+        return sb.toString();
     }
 }
