@@ -3,6 +3,7 @@ package src.main.java.ga.crossover;
 import src.main.java.ga.chromosome.BinaryChromosome;
 import src.main.java.ga.chromosome.Chromosome;
 import src.main.java.ga.core.GAConfig;
+import src.main.java.ga.utils.RandomUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,6 @@ public class Uniform_Crossover implements Crossover<Boolean>{
 
     @Override
     public List<Chromosome<Boolean>> crossover(List<Chromosome<Boolean>> parents) {
-        Random rand = new Random();
         List<Chromosome<Boolean>> offspring = new ArrayList<>();
 
         // Loop through parents in pairs
@@ -35,9 +35,9 @@ public class Uniform_Crossover implements Crossover<Boolean>{
             List<Boolean> child2Genes = new ArrayList<>();
 
             // Decide whether to perform crossover or copy parents directly
-            if (rand.nextDouble() < crossoverRate) {
+            if (RandomUtils.nextDouble() < crossoverRate) {
                 for (int g = 0; g < genes1.size(); g++) {
-                    if (rand.nextDouble() < uniformrate) {
+                    if (RandomUtils.nextDouble() < uniformrate) {
                         child1Genes.add(genes1.get(g));
                         child2Genes.add(genes2.get(g));
                     } else {
