@@ -1,47 +1,49 @@
 package src.main.java.ga.chromosome;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-/**
- * A chromosome represented by a list of booleans (0s and 1s).
- */
 public class BinaryChromosome implements Chromosome<Boolean> {
 
     private List<Boolean> genes;
-
-    /**
-     * Constructor to create a binary chromosome of a given length.
-     * @param length The length of the chromosome.
-     */
     public BinaryChromosome(int length) {
-        // Implementation omitted.
+        genes = new ArrayList<>(length);
+        Random random = new Random();
+
+        for (int i = 0; i < length; i++) {
+            genes.add(random.nextBoolean());
+        }
     }
 
-    /**
-     * Constructor to create a binary chromosome with given genes.
-     * @param genes The genes of the chromosome.
-     */
     public BinaryChromosome(List<Boolean> genes) {
-        // Implementation omitted.
+        this.genes = new ArrayList<>(genes);
     }
-
     @Override
     public Chromosome<Boolean> clone() {
-        return null;
+        return new BinaryChromosome(new ArrayList<>(genes));
     }
 
     @Override
     public List<Boolean> getGenes() {
-        return null;
+        return genes;
     }
 
     @Override
     public int getLength() {
-        return 0;
+        return genes.size();
     }
 
     @Override
     public void mutate() {
-        // Implementation omitted.
+
+    }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("BinaryChromosome: ");
+        for (Boolean gene : genes) {
+            sb.append(gene ? 1 : 0).append(" ");
+        }
+        return sb.toString();
     }
 }
