@@ -1,53 +1,61 @@
 package src.main.java.ga.chromosome;
 
 import src.main.java.ga.chromosome.Chromosome;
+import src.main.java.ga.utils.RandomUtils;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-/**
- * A chromosome represented by a list of integers.
- */
 public class IntegerChromosome implements Chromosome<Integer> {
 
     private List<Integer> genes;
-    private int min;
-    private int max;
+    private int minValue;
+    private int maxValue;
 
-    /**
-     * Constructor to create an integer chromosome.
-     * @param length The length of the chromosome.
-     * @param min The minimum value of a gene.
-     * @param max The maximum value of a gene.
-     */
+
     public IntegerChromosome(int length, int min, int max) {
-        // Implementation omitted.
+        genes=new ArrayList<>(length);
+        minValue=min;
+        maxValue=max;
+        Random rand=new Random();
+        for (int i = 0; i < length; i++)
+        {
+            int gene = RandomUtils.nextInt((maxValue - minValue) + 1) + minValue;
+            genes.add(gene);
+        }
     }
-
-    /**
-     * Constructor to create an integer chromosome with given genes.
-     * @param genes The genes of the chromosome.
-     */
     public IntegerChromosome(List<Integer> genes) {
-        // Implementation omitted.
+       this(genes.size(), genes.get(0), genes.get(genes.size()-1));
     }
 
     @Override
     public Chromosome<Integer> clone() {
-        return null;
+        return new IntegerChromosome(new ArrayList<>(genes));
     }
 
     @Override
     public List<Integer> getGenes() {
-        return null;
+        return genes;
     }
 
     @Override
     public int getLength() {
-        return 0;
+        return genes.size();
     }
 
     @Override
     public void mutate() {
         // Implementation omitted.
+    }
+
+    @Override
+    public String toString()
+    {
+        StringBuilder sb = new StringBuilder("IntegerChromosome: ");
+        for (int gene : genes) {
+            sb.append(gene);
+        }
+        return sb.toString();
     }
 }
