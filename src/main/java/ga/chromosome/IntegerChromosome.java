@@ -1,11 +1,8 @@
 package src.main.java.ga.chromosome;
-
-import src.main.java.ga.chromosome.Chromosome;
 import src.main.java.ga.utils.RandomUtils;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+
 
 public class IntegerChromosome implements Chromosome<Integer> {
 
@@ -18,7 +15,6 @@ public class IntegerChromosome implements Chromosome<Integer> {
         genes=new ArrayList<>(length);
         minValue=min;
         maxValue=max;
-        Random rand=new Random();
         for (int i = 0; i < length; i++)
         {
             int gene = RandomUtils.nextInt((maxValue - minValue) + 1) + minValue;
