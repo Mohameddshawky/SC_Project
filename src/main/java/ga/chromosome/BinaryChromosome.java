@@ -1,18 +1,16 @@
 package src.main.java.ga.chromosome;
-
+import src.main.java.ga.utils.RandomUtils;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+
 
 public class BinaryChromosome implements Chromosome<Boolean> {
 
     private List<Boolean> genes;
     public BinaryChromosome(int length) {
         genes = new ArrayList<>(length);
-        Random random = new Random();
-
         for (int i = 0; i < length; i++) {
-            genes.add(random.nextBoolean());
+            genes.add(RandomUtils.nextBoolean());
         }
     }
 

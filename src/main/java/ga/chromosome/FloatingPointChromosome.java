@@ -1,8 +1,9 @@
 package src.main.java.ga.chromosome;
 
+import src.main.java.ga.utils.RandomUtils;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class FloatingPointChromosome implements Chromosome<Double> {
     private List<Double> genes;
@@ -12,10 +13,8 @@ public class FloatingPointChromosome implements Chromosome<Double> {
         this.genes = new ArrayList<>(length);
         this.minValue = min;
         this.maxValue = max;
-        Random random = new Random();
-
         for (int i = 0; i < length; i++) {
-            double gene = minValue + (maxValue - minValue) * random.nextDouble();
+            double gene = minValue + (maxValue - minValue) * RandomUtils.nextDouble();
             genes.add(gene);
         }
     }
