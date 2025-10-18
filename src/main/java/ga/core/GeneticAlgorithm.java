@@ -2,7 +2,7 @@ package src.main.java.ga.core;
 
 
 
-import ga.population.Population;
+import src.main.java.ga.population.Population;
 
 
 import src.main.java.ga.core.GAConfig;

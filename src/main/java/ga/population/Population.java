@@ -1,6 +1,6 @@
-package ga.population;
+package src.main.java.ga.population;
 
-import ga.population.Individual;
+import src.main.java.ga.population.Individual;
 import java.util.List;
 
 /**
