@@ -1,4 +1,4 @@
-package ga.case_study;
+package src.main.java.ga.case_study;
 
 /**
  * A placeholder for case studies.

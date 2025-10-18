@@ -29,6 +29,34 @@ src/main/java/
     └── utils/           # Utility classes.
 ```
 
+## Installation
+
+To use this library in your project, you can add it as a dependency using Maven or Gradle.
+
+### Maven
+
+Add the following to your `pom.xml` file:
+
+```xml
+<dependency>
+    <groupId>com.your-group</groupId>
+    <artifactId>java-ga-library</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
+
+### Gradle
+
+Add the following to your `build.gradle` file:
+
+```groovy
+dependencies {
+    implementation 'com.your-group:java-ga-library:1.0.0'
+}
+```
+
+**Note:** Please replace `1.0.0` with the desired version of the library.
+
 ## 3. Core Components (Classes & Interfaces)
 
 ### `ga.chromosome`
