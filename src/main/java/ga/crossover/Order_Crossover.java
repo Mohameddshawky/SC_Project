@@ -37,8 +37,6 @@ public class Order_Crossover implements Crossover<Integer> {
     @Override
     public List<Chromosome<Integer>> crossover(List<Chromosome<Integer>> parents) {
         List<Chromosome<Integer>> offspringList = new ArrayList<>();
-        Random rand = new Random();
-
         for (int i = 0; i < parents.size(); i += 2) {
             Chromosome<Integer> parent1 = parents.get(i);
             Chromosome<Integer> parent2 = parents.get((i + 1) % parents.size());
