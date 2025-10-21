@@ -1,4 +1,5 @@
 package src.main.java.ga.chromosome;
+import src.main.java.ga.mutation.IntegerMutation;
 import src.main.java.ga.utils.RandomUtils;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +43,10 @@ public class IntegerChromosome implements Chromosome<Integer> {
 
     @Override
     public void mutate() {
-        // Implementation omitted.
+        // Default mutation with 0.05 probability
+        IntegerMutation mutation = new IntegerMutation(0.05);
+        Chromosome<Integer> mutated = mutation.mutate(this);
+        this.genes = new ArrayList<>(mutated.getGenes());
     }
 
     @Override
