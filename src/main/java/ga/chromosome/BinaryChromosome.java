@@ -1,4 +1,5 @@
 package src.main.java.ga.chromosome;
+import src.main.java.ga.mutation.BinaryMutation;
 import src.main.java.ga.utils.RandomUtils;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,10 @@ public class BinaryChromosome implements Chromosome<Boolean> {
 
     @Override
     public void mutate() {
-
+        // Default mutation with 0.01 probability
+        BinaryMutation mutation = new BinaryMutation(0.01);
+        Chromosome<Boolean> mutated = mutation.mutate(this);
+        this.genes = new ArrayList<>(mutated.getGenes());
     }
     @Override
     public String toString() {

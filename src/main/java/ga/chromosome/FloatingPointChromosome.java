@@ -1,5 +1,6 @@
 package src.main.java.ga.chromosome;
 
+import src.main.java.ga.mutation.FloatingPointMutation;
 import src.main.java.ga.utils.RandomUtils;
 
 import java.util.ArrayList;
@@ -45,6 +46,10 @@ public class FloatingPointChromosome implements Chromosome<Double> {
 
     @Override
     public void mutate() {
+        // Default mutation with 0.05 probability using bounds [0.0, 1.0]
+        FloatingPointMutation mutation = new FloatingPointMutation(0.05, minValue, maxValue);
+        Chromosome<Double> mutated = mutation.mutate(this);
+        this.genes = new ArrayList<>(mutated.getGenes());
     }
 
     @Override
