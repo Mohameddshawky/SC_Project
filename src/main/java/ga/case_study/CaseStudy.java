@@ -1,5 +1,7 @@
 package src.main.java.ga.case_study;
 
+import src.main.java.ga.utils.RandomUtils;
+
 /**
  * A placeholder for case studies.
  */
