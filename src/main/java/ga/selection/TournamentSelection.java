@@ -11,7 +11,8 @@ public class TournamentSelection<T> extends AbstractSelection<T> {
     }
 
     @Override
-    public List<Chromosome<T>> select(List<Chromosome<T>> population, Evaluation evaluation) {
+    public List<Chromosome<T>> select(List<Chromosome<T>> population, Evaluation<T> evaluation) {
+        // TODO: Implement tournament selection
         return List.of();
     }
 }

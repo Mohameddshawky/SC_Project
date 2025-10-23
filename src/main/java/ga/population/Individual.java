@@ -29,7 +29,8 @@ public class Individual<T> {
      * @param chromosome The chromosome for this individual.
      */
     public Individual(Chromosome<T> chromosome) {
-        // Implementation omitted.
+        this.chromosome = chromosome;
+        this.fitness = 0.0;
     }
 
     /**
@@ -38,7 +39,7 @@ public class Individual<T> {
      * @return The chromosome.
      */
     public Chromosome<T> getChromosome() {
-        return null; // Implementation omitted.
+        return chromosome;
     }
 
     /**
@@ -47,7 +48,7 @@ public class Individual<T> {
      * @return The fitness score.
      */
     public double getFitness() {
-        return 0.0; // Implementation omitted.
+        return fitness;
     }
 
     /**
@@ -56,6 +57,6 @@ public class Individual<T> {
      * @param fitness The new fitness score.
      */
     public void setFitness(double fitness) {
-        // Implementation omitted.
+        this.fitness = fitness;
     }
 }

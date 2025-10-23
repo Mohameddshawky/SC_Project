@@ -11,5 +11,5 @@ public abstract class AbstractSelection<T> implements Selection<T> {
     }
 
     @Override
-    public abstract List<Chromosome<T>> select(List<Chromosome<T>> population, Evaluation evaluation);
+    public abstract List<Chromosome<T>> select(List<Chromosome<T>> population, Evaluation<T> evaluation);
 }

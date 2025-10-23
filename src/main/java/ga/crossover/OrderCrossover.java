@@ -7,11 +7,11 @@ import src.main.java.ga.utils.RandomUtils;
 
 import java.util.*;
 
-public class Order_Crossover implements Crossover<Integer> {
+public class OrderCrossover implements Crossover<Integer> {
 
     private final double crossoverRate;
 
-    public Order_Crossover(GAConfig config) {
+    public OrderCrossover(GAConfig config) {
         this.crossoverRate = config.getCrossoverRate();
     }
 
@@ -38,12 +38,12 @@ public class Order_Crossover implements Crossover<Integer> {
     public List<Chromosome<Integer>> crossover(List<Chromosome<Integer>> parents) {
         List<Chromosome<Integer>> offspringList = new ArrayList<>();
         for (int i = 0; i < parents.size(); i += 2) {
-            Chromosome<Integer> parent1 = parents.get(i);
-            Chromosome<Integer> parent2 = parents.get((i + 1) % parents.size());
+            IntegerChromosome parent1 = (IntegerChromosome) parents.get(i);
+            IntegerChromosome parent2 = (IntegerChromosome) parents.get((i + 1) % parents.size());
 
             if (RandomUtils.nextDouble() > crossoverRate) {
-                offspringList.add(new IntegerChromosome(parent1.getGenes()));
-                offspringList.add(new IntegerChromosome(parent2.getGenes()));
+                offspringList.add(new IntegerChromosome(parent1.getGenes(), parent1.getMinValue(), parent1.getMaxValue()));
+                offspringList.add(new IntegerChromosome(parent2.getGenes(), parent2.getMinValue(), parent2.getMaxValue()));
                 continue;
             }
 
@@ -70,8 +70,8 @@ public class Order_Crossover implements Crossover<Integer> {
             fillRemaining(child1, genes2, start, end);
             fillRemaining(child2, genes1, start, end);
 
-            offspringList.add(new IntegerChromosome(child1));
-            offspringList.add(new IntegerChromosome(child2));
+            offspringList.add(new IntegerChromosome(child1, parent1.getMinValue(), parent1.getMaxValue()));
+            offspringList.add(new IntegerChromosome(child2, parent2.getMinValue(), parent2.getMaxValue()));
         }
 
         return offspringList;
