@@ -16,10 +16,6 @@ public class ElitismReplacement<T> implements Replacement<T> {
     private final int elitismCount;
     private final Evaluation<T> evaluation;
 
-    /**
-     * @param elitismCount number of elite individuals to keep
-     * @param evaluation   fitness evaluation function
-     */
     public ElitismReplacement(int elitismCount, Evaluation<T> evaluation) {
         this.elitismCount = elitismCount;
         this.evaluation = evaluation;
@@ -27,22 +23,16 @@ public class ElitismReplacement<T> implements Replacement<T> {
 
     @Override
     public List<Chromosome<T>> replace(List<Chromosome<T>> population, List<Chromosome<T>> offspring) {
-        // Compute fitness for all chromosomes
-        Map<Chromosome<T>, Double> fitnessMap = new HashMap<>();
+        // Precompute fitness values to avoid re-evaluating in comparator
+        Map<Chromosome<T>, Double> fitness = new HashMap<>();
+        for (Chromosome<T> c : population) fitness.put(c, evaluation.evaluate(c));
+        for (Chromosome<T> c : offspring) fitness.put(c, evaluation.evaluate(c));
 
-        for (Chromosome<T> c : population) {
-            fitnessMap.put(c, evaluation.evaluate(c));
-        }
-        for (Chromosome<T> c : offspring) {
-            fitnessMap.put(c, evaluation.evaluate(c));
-        }
+        // Sort by descending fitness
+        population.sort((a, b) -> Double.compare(fitness.get(b), fitness.get(a)));
+        offspring.sort((a, b) -> Double.compare(fitness.get(b), fitness.get(a)));
 
-        // Sort both lists by evaluated fitness (descending)
-        Comparator<Object> byFitness = Comparator.comparingDouble(fitnessMap::get).reversed();
-        population.sort(byFitness);
-        offspring.sort(byFitness);
-
-        // Keep the elite individuals
+        // Keep the top elite individuals
         List<Chromosome<T>> nextGen = new ArrayList<>(population.subList(0, Math.min(elitismCount, population.size())));
 
         // Fill the rest with offspring
