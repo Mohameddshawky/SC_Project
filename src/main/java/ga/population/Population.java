@@ -1,6 +1,6 @@
 package src.main.java.ga.population;
 
-import src.main.java.ga.population.Individual;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,19 +18,19 @@ public class Population<T> {
     private List<Individual<T>> individuals;
 
     /**
-     * Constructor to create a population of a given size.
+     * Constructor to create a population with a list of individuals.
      *
-     * @param populationSize The number of individuals to create.
+     * @param individuals The list of individuals.
      */
-    public Population(int populationSize) {
-        // Implementation omitted.
+    public Population(List<Individual<T>> individuals) {
+        this.individuals = individuals;
     }
 
     /**
-     * Initializes the population with random individuals.
+     * Constructor to create an empty population.
      */
-    public void initialize() {
-        // Implementation omitted.
+    public Population() {
+        this.individuals = new ArrayList<>();
     }
 
     /**
@@ -39,7 +39,16 @@ public class Population<T> {
      * @return The list of individuals.
      */
     public List<Individual<T>> getIndividuals() {
-        return null; // Implementation omitted.
+        return individuals;
+    }
+
+    /**
+     * Sets the list of individuals in the population.
+     *
+     * @param individuals The new list of individuals.
+     */
+    public void setIndividuals(List<Individual<T>> individuals) {
+        this.individuals = individuals;
     }
 
     /**
@@ -48,7 +57,16 @@ public class Population<T> {
      * @return The individual with the highest fitness score.
      */
     public Individual<T> getFittestIndividual() {
-        return null; // Implementation omitted.
+        if (individuals == null || individuals.isEmpty()) {
+            return null;
+        }
+        Individual<T> fittest = individuals.get(0);
+        for (Individual<T> individual : individuals) {
+            if (individual.getFitness() > fittest.getFitness()) {
+                fittest = individual;
+            }
+        }
+        return fittest;
     }
 
     /**
@@ -57,6 +75,18 @@ public class Population<T> {
      * @return The number of individuals.
      */
     public int size() {
-        return 0; // Implementation omitted.
+        return individuals != null ? individuals.size() : 0;
+    }
+
+    /**
+     * Adds an individual to the population.
+     *
+     * @param individual The individual to add.
+     */
+    public void addIndividual(Individual<T> individual) {
+        if (individuals == null) {
+            individuals = new ArrayList<>();
+        }
+        individuals.add(individual);
     }
 }

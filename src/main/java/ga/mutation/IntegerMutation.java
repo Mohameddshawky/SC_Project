@@ -41,6 +41,7 @@ public class IntegerMutation implements Mutation<Integer> {
         genes.set(index1, genes.get(index2));
         genes.set(index2, temp);
 
-        return new IntegerChromosome(genes);
+        IntegerChromosome intChromosome = (IntegerChromosome) chromosome;
+        return new IntegerChromosome(genes, intChromosome.getMinValue(), intChromosome.getMaxValue());
     }
 }

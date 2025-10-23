@@ -22,13 +22,16 @@ public class IntegerChromosome implements Chromosome<Integer> {
             genes.add(gene);
         }
     }
-    public IntegerChromosome(List<Integer> genes) {
-       this(genes.size(), genes.get(0), genes.get(genes.size()-1));
+    
+    public IntegerChromosome(List<Integer> genes, int min, int max) {
+        this.genes = new ArrayList<>(genes);
+        this.minValue = min;
+        this.maxValue = max;
     }
 
     @Override
     public Chromosome<Integer> clone() {
-        return new IntegerChromosome(new ArrayList<>(genes));
+        return new IntegerChromosome(new ArrayList<>(genes), minValue, maxValue);
     }
 
     @Override
@@ -39,6 +42,14 @@ public class IntegerChromosome implements Chromosome<Integer> {
     @Override
     public int getLength() {
         return genes.size();
+    }
+
+    public int getMinValue() {
+        return minValue;
+    }
+
+    public int getMaxValue() {
+        return maxValue;
     }
 
     @Override

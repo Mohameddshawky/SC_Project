@@ -8,11 +8,11 @@ import src.main.java.ga.utils.RandomUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Uniform_Crossover implements Crossover<Boolean>{
+public class UniformCrossover implements Crossover<Boolean>{
     private final double crossoverRate;
     private static final double uniformrate = 0.5;
 
-    public Uniform_Crossover(GAConfig config) {
+    public UniformCrossover(GAConfig config) {
         crossoverRate=config.getCrossoverRate();
     }
 
