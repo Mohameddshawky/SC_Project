@@ -36,12 +36,6 @@ public class GeneticAlgorithm<T> {
         this.chromosomeFactory = chromosomeFactory;
         this.bestIndividual = null;
     }
-
-    /**
-     * Main GA loop: initialize population, then evolve for a number of generations.
-     * 
-     * @return The best individual found
-     */
     public Individual<T> run() {
         List<Chromosome<T>> population = initializePopulation();
         evaluatePopulation(population);
@@ -66,9 +60,6 @@ public class GeneticAlgorithm<T> {
         return bestIndividual;
     }
 
-    /**
-     * Initialize the population with random chromosomes.
-     */
     private List<Chromosome<T>> initializePopulation() {
         List<Chromosome<T>> population = new ArrayList<>();
         for (int i = 0; i < config.getPopulationSize(); i++) {
@@ -77,18 +68,13 @@ public class GeneticAlgorithm<T> {
         return population;
     }
 
-    /**
-     * Evaluate fitness for all chromosomes in the population.
-     */
+
     private void evaluatePopulation(List<Chromosome<T>> population) {
         for (Chromosome<T> chromosome : population) {
             evaluation.evaluate(chromosome);
         }
     }
 
-    /**
-     * Update the best individual if a better one is found in the current population.
-     */
     private void updateBestIndividual(List<Chromosome<T>> population) {
         for (Chromosome<T> chromosome : population) {
             double fitness = evaluation.evaluate(chromosome);
@@ -99,9 +85,6 @@ public class GeneticAlgorithm<T> {
         }
     }
 
-    /**
-     * Perform one generation of evolution: selection -> crossover -> mutation -> replacement.
-     */
     private List<Chromosome<T>> evolve(List<Chromosome<T>> population) {
         // 1. Selection
         List<Chromosome<T>> parents = selection.select(population, evaluation);
@@ -118,21 +101,13 @@ public class GeneticAlgorithm<T> {
                 mutatedOffspring.add(child);
             }
         }
-        
-        // 4. Replacement
         return replacement.replace(population, mutatedOffspring);
     }
 
-    /**
-     * Get the best individual found during the evolution.
-     */
     public Individual<T> getBestIndividual() {
         return bestIndividual;
     }
 
-    /**
-     * Get the configuration used by this GA.
-     */
     public GAConfig getConfig() {
         return config;
     }

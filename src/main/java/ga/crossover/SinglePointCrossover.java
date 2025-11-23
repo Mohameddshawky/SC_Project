@@ -8,9 +8,7 @@ import src.main.java.ga.utils.RandomUtils;
 
 import java.util.*;
 
-/**
- * Single-point crossover that works with both Integer and Double chromosome types.
- */
+
 public class SinglePointCrossover<T> implements Crossover<T> {
 
     private final double crossoverRate;

@@ -2,9 +2,6 @@ package src.main.java.ga.utils;
 
 import java.util.Random;
 
-/**
- * A utility class for random number generation.
- */
 public class RandomUtils {
     private static final Random RANDOM = new Random();
 
