@@ -10,7 +10,11 @@ public class MinimumImplicationOperator implements ImplicationOperator {
 
     @Override
     public MembershipFunction apply(double firingStrength, MembershipFunction consequentMF) {
-        return x -> Math.min(firingStrength, consequentMF.getValue(x));
+        return new DerivedMembershipFunction(
+            x -> Math.min(firingStrength, consequentMF.getMembership(x)),
+            consequentMF,
+            "Minimum Implication"
+        );
     }
 
     @Override

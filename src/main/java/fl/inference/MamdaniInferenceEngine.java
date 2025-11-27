@@ -62,11 +62,15 @@ public class MamdaniInferenceEngine implements InferenceEngine<RuleBase> {
                 }
 
                 // Apply implication
-                MembershipFunction impliedMF = implicationOperator.apply(firingStrength, consequentSet.getMf());
+                MembershipFunction impliedMF = implicationOperator.apply(firingStrength, consequentSet.getMembershipFunction());
 
                 // Aggregate the results for this output variable
                 aggregatedMFs.merge(outputVar, impliedMF, (current, implied) ->
-                    x -> sNorm.apply(current.getValue(x), implied.getValue(x))
+                    new DerivedMembershipFunction(
+                        x -> sNorm.apply(current.getMembership(x), implied.getMembership(x)),
+                        current,
+                        "Aggregated"
+                    )
                 );
             }
         }

@@ -10,7 +10,11 @@ public class ProductImplicationOperator implements ImplicationOperator {
 
     @Override
     public MembershipFunction apply(double firingStrength, MembershipFunction consequentMF) {
-        return x -> firingStrength * consequentMF.getValue(x);
+        return new DerivedMembershipFunction(
+            x -> firingStrength * consequentMF.getMembership(x),
+            consequentMF,
+            "Product Implication"
+        );
     }
 
     @Override
