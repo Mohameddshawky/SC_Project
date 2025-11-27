@@ -21,23 +21,14 @@ public class Antecedent {
     private final List<Condition> conditions;
     private final Operator operator;
     
-    /**
-     * Creates an antecedent with a single condition.
-     * 
-     * @param condition the condition
-     */
+
     public Antecedent(Condition condition) {
         this.conditions = new ArrayList<>();
         this.conditions.add(condition);
         this.operator = Operator.AND; // Default, doesn't matter for single condition
     }
     
-    /**
-     * Creates an antecedent with multiple conditions.
-     * 
-     * @param conditions the list of conditions
-     * @param operator the operator connecting the conditions (AND or OR)
-     */
+
     public Antecedent(List<Condition> conditions, Operator operator) {
         if (conditions == null || conditions.isEmpty()) {
             throw new IllegalArgumentException("Conditions cannot be null or empty");
@@ -48,15 +39,7 @@ public class Antecedent {
         this.conditions = new ArrayList<>(conditions);
         this.operator = operator;
     }
-    
-    /**
-     * Evaluates the antecedent using the provided fuzzified inputs.
-     * 
-     * @param fuzzifiedInputs map of variable names to their fuzzy values
-     * @param tNorm the T-norm operator for AND
-     * @param sNorm the S-norm operator for OR
-     * @return the truth value of the antecedent in [0, 1]
-     */
+
     public double evaluate(Map<String, FuzzyValue> fuzzifiedInputs, TNorm tNorm, SNorm sNorm) {
         if (conditions.isEmpty()) {
             return 0.0;

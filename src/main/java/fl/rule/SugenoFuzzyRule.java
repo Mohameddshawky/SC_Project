@@ -17,22 +17,12 @@ public class SugenoFuzzyRule {
     private double weight;
     private boolean enabled;
 
-    /**
-     * Creates a Sugeno fuzzy rule with default weight (1.0) and enabled status (true).
-     * @param antecedent The IF part of the rule.
-     * @param consequent The THEN part of the rule (a Sugeno consequent).
-     */
+
     public SugenoFuzzyRule(Antecedent antecedent, SugenoConsequent consequent) {
         this(antecedent, consequent, 1.0, true);
     }
 
-    /**
-     * Creates a Sugeno fuzzy rule.
-     * @param antecedent The IF part of the rule.
-     * @param consequent The THEN part of the rule.
-     * @param weight The rule's weight (0.0 to 1.0).
-     * @param enabled Whether the rule is active.
-     */
+
     public SugenoFuzzyRule(Antecedent antecedent, SugenoConsequent consequent, double weight, boolean enabled) {
         if (antecedent == null) {
             throw new IllegalArgumentException("Antecedent cannot be null");
@@ -49,13 +39,7 @@ public class SugenoFuzzyRule {
         this.enabled = enabled;
     }
 
-    /**
-     * Evaluates the rule's firing strength based on fuzzified inputs.
-     * @param fuzzifiedInputs A map of variable names to their fuzzy values.
-     * @param tNorm The T-norm for AND operations.
-     * @param sNorm The S-norm for OR operations.
-     * @return The firing strength (truth value) of the rule, multiplied by its weight.
-     */
+
     public double getFiringStrength(Map<String, FuzzyValue> fuzzifiedInputs, TNorm tNorm, SNorm sNorm) {
         if (!enabled) {
             return 0.0;

@@ -14,16 +14,7 @@ public class TrapezoidalMF implements MembershipFunction {
     private final double b;
     private final double c;
     private final double d;
-    
-    /**
-     * Creates a trapezoidal membership function.
-     * 
-     * @param a left foot (minimum support)
-     * @param b left shoulder (left core boundary)
-     * @param c right shoulder (right core boundary)
-     * @param d right foot (maximum support)
-     * @throws IllegalArgumentException if parameters don't satisfy a <= b <= c <= d
-     */
+
     public TrapezoidalMF(double a, double b, double c, double d) {
         if (a > b || b > c || c > d) {
             throw new IllegalArgumentException(

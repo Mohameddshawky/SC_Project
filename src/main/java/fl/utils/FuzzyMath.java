@@ -9,17 +9,7 @@ public class FuzzyMath {
     
     private static final double EPSILON = 1e-10;
     
-    /**
-     * Computes the centroid of a membership function using numerical integration.
-     * 
-     * Formula: x* = ∫μ(x)·x dx / ∫μ(x) dx
-     * 
-     * @param membershipFunction the membership function
-     * @param minValue the minimum value of the domain
-     * @param maxValue the maximum value of the domain
-     * @param numSamples the number of samples for integration
-     * @return the centroid value
-     */
+
     public static double computeCentroid(MembershipFunction membershipFunction, 
                                         double minValue, double maxValue, 
                                         int numSamples) {
@@ -46,15 +36,7 @@ public class FuzzyMath {
         return numerator / denominator;
     }
     
-    /**
-     * Computes the area under a membership function using numerical integration.
-     * 
-     * @param membershipFunction the membership function
-     * @param minValue the minimum value of the domain
-     * @param maxValue the maximum value of the domain
-     * @param numSamples the number of samples for integration
-     * @return the area
-     */
+
     public static double computeArea(MembershipFunction membershipFunction,
                                     double minValue, double maxValue,
                                     int numSamples) {
@@ -74,15 +56,7 @@ public class FuzzyMath {
         return area;
     }
     
-    /**
-     * Finds the maximum membership value in a domain.
-     * 
-     * @param membershipFunction the membership function
-     * @param minValue the minimum value of the domain
-     * @param maxValue the maximum value of the domain
-     * @param numSamples the number of samples to check
-     * @return the maximum membership value
-     */
+
     public static double findMaxMembership(MembershipFunction membershipFunction,
                                           double minValue, double maxValue,
                                           int numSamples) {
@@ -104,22 +78,12 @@ public class FuzzyMath {
         return maxMembership;
     }
     
-    /**
-     * Computes the fuzzy NOT operation (complement).
-     * 
-     * @param membership the membership degree
-     * @return 1 - membership
-     */
+
     public static double fuzzyNot(double membership) {
         return 1.0 - membership;
     }
     
-    /**
-     * Computes the minimum of multiple values.
-     * 
-     * @param values the values
-     * @return the minimum value
-     */
+
     public static double min(double... values) {
         if (values.length == 0) {
             throw new IllegalArgumentException("At least one value is required");
@@ -132,13 +96,7 @@ public class FuzzyMath {
         }
         return min;
     }
-    
-    /**
-     * Computes the maximum of multiple values.
-     * 
-     * @param values the values
-     * @return the maximum value
-     */
+
     public static double max(double... values) {
         if (values.length == 0) {
             throw new IllegalArgumentException("At least one value is required");
@@ -152,23 +110,12 @@ public class FuzzyMath {
         return max;
     }
     
-    /**
-     * Checks if two values are approximately equal within epsilon.
-     * 
-     * @param a first value
-     * @param b second value
-     * @return true if approximately equal
-     */
+
     public static boolean approximatelyEqual(double a, double b) {
         return Math.abs(a - b) < EPSILON;
     }
     
-    /**
-     * Clamps a value to the range [0, 1].
-     * 
-     * @param value the value to clamp
-     * @return the clamped value
-     */
+
     public static double clampMembership(double value) {
         if (value < 0.0) return 0.0;
         if (value > 1.0) return 1.0;

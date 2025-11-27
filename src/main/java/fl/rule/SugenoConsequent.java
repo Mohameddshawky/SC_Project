@@ -13,34 +13,20 @@ public class SugenoConsequent {
     private final Map<String, Double> coefficients; // For first-order
     private final double constant; // For zero-order
 
-    /**
-     * Creates a zero-order Sugeno consequent.
-     * @param outputVariable The name of the output variable.
-     * @param constant The constant output value.
-     */
     public SugenoConsequent(String outputVariable, double constant) {
         this.outputVariable = outputVariable;
         this.constant = constant;
         this.coefficients = null;
     }
 
-    /**
-     * Creates a first-order Sugeno consequent.
-     * @param outputVariable The name of the output variable.
-     * @param coefficients A map of input variable names to their coefficients.
-     * @param constant The constant term in the linear function.
-     */
+
     public SugenoConsequent(String outputVariable, Map<String, Double> coefficients, double constant) {
         this.outputVariable = outputVariable;
         this.coefficients = coefficients;
         this.constant = constant;
     }
 
-    /**
-     * Evaluates the output of the consequent.
-     * @param crispInputs A map of input variable names to their crisp values.
-     * @return The calculated output value.
-     */
+
     public double evaluate(Map<String, Double> crispInputs) {
         if (isZeroOrder()) {
             return constant;

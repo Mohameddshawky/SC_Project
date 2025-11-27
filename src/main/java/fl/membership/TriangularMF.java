@@ -12,15 +12,6 @@ public class TriangularMF implements MembershipFunction {
     private final double a;
     private final double b;
     private final double c;
-    
-    /**
-     * Creates a triangular membership function.
-     * 
-     * @param a left foot (minimum support)
-     * @param b peak (core)
-     * @param c right foot (maximum support)
-     * @throws IllegalArgumentException if parameters don't satisfy a <= b <= c
-     */
     public TriangularMF(double a, double b, double c) {
         if (a > b || b > c) {
             throw new IllegalArgumentException(

@@ -15,14 +15,7 @@ public class GaussianMF implements MembershipFunction {
     // For practical support bounds, consider membership < 0.01 as negligible
     // This occurs at approximately mean ± 3*sigma
     private static final double SIGMA_MULTIPLIER = 3.0;
-    
-    /**
-     * Creates a Gaussian membership function.
-     * 
-     * @param mean the center of the bell curve (μ)
-     * @param sigma the standard deviation (σ), must be positive
-     * @throws IllegalArgumentException if sigma <= 0
-     */
+
     public GaussianMF(double mean, double sigma) {
         if (sigma <= 0) {
             throw new IllegalArgumentException(

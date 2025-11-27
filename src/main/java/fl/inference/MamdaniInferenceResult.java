@@ -26,12 +26,6 @@ public class MamdaniInferenceResult implements InferenceResult {
         return fuzzyValues;
     }
 
-    /**
-     * Gets the aggregated membership functions for each output variable.
-     * These are used for defuzzification.
-     * 
-     * @return map of output variables to their aggregated membership functions
-     */
     public Map<LinguisticVariable, MembershipFunction> getAggregatedMembershipFunctions() {
         return aggregatedMFs;
     }

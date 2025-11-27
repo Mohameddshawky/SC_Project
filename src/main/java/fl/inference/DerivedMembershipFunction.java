@@ -14,14 +14,7 @@ public class DerivedMembershipFunction implements MembershipFunction {
     private final DoubleUnaryOperator membershipCalculator;
     private final MembershipFunction baseMF;
     private final String type;
-    
-    /**
-     * Creates a derived membership function with a custom membership calculator.
-     * 
-     * @param membershipCalculator the function that calculates membership for a given x
-     * @param baseMF the base membership function (used for support bounds)
-     * @param type the type description of this derived function
-     */
+
     public DerivedMembershipFunction(DoubleUnaryOperator membershipCalculator, 
                                      MembershipFunction baseMF, 
                                      String type) {

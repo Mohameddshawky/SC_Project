@@ -9,12 +9,7 @@ public class Consequent {
     private final String variableName;
     private final String fuzzySetName;
     
-    /**
-     * Creates a consequent.
-     * 
-     * @param variableName the name of the output variable
-     * @param fuzzySetName the name of the fuzzy set for the output
-     */
+
     public Consequent(String variableName, String fuzzySetName) {
         if (variableName == null || variableName.trim().isEmpty()) {
             throw new IllegalArgumentException("Variable name cannot be null or empty");

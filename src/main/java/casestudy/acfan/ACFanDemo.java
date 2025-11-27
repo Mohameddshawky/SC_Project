@@ -2,8 +2,7 @@ package src.main.java.casestudy.acfan;
 
 /**
  * Demonstration of the Smart AC Fan Control System.
- * 
- * This class runs multiple test scenarios to showcase the fuzzy logic pipeline:
+ *
  * 1. Fuzzification of crisp inputs
  * 2. Rule evaluation and inference
  * 3. Aggregation of results

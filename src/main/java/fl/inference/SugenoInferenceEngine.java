@@ -20,11 +20,6 @@ public class SugenoInferenceEngine implements InferenceEngine<SugenoRuleBase> {
     private final TNorm tNorm;
     private final SNorm sNorm;
 
-    /**
-     * Creates a Sugeno inference engine with specified operators.
-     * @param tNorm The T-norm for AND operations.
-     * @param sNorm The S-norm for OR operations.
-     */
     public SugenoInferenceEngine(TNorm tNorm, SNorm sNorm) {
         this.tNorm = tNorm;
         this.sNorm = sNorm;

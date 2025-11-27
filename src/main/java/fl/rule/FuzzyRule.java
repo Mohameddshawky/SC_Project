@@ -17,25 +17,12 @@ public class FuzzyRule {
     private final Consequent consequent;
     private double weight;
     private boolean enabled;
-    
-    /**
-     * Creates a fuzzy rule.
-     * 
-     * @param antecedent the IF part of the rule
-     * @param consequent the THEN part of the rule
-     */
+
     public FuzzyRule(Antecedent antecedent, Consequent consequent) {
         this(antecedent, consequent, 1.0, true);
     }
     
-    /**
-     * Creates a fuzzy rule with weight and enabled status.
-     * 
-     * @param antecedent the IF part of the rule
-     * @param consequent the THEN part of the rule
-     * @param weight the rule weight (default 1.0)
-     * @param enabled whether the rule is enabled (default true)
-     */
+
     public FuzzyRule(Antecedent antecedent, Consequent consequent, double weight, boolean enabled) {
         if (antecedent == null) {
             throw new IllegalArgumentException("Antecedent cannot be null");
@@ -52,15 +39,7 @@ public class FuzzyRule {
         this.enabled = enabled;
     }
     
-    /**
-     * Evaluates the rule given fuzzified inputs.
-     * Returns the firing strength (truth value) of the rule.
-     * 
-     * @param fuzzifiedInputs map of variable names to their fuzzy values
-     * @param tNorm the T-norm operator for AND
-     * @param sNorm the S-norm operator for OR
-     * @return the firing strength in [0, 1], or 0.0 if disabled
-     */
+
     public double evaluate(Map<String, FuzzyValue> fuzzifiedInputs, TNorm tNorm, SNorm sNorm) {
         if (!enabled) {
             return 0.0;

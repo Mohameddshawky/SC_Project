@@ -10,13 +10,7 @@ public class Condition {
     private final String fuzzySetName;
     private final boolean negated;
     
-    /**
-     * Creates a condition.
-     * 
-     * @param variableName the name of the linguistic variable
-     * @param fuzzySetName the name of the fuzzy set
-     * @param negated whether this condition is negated (NOT)
-     */
+
     public Condition(String variableName, String fuzzySetName, boolean negated) {
         if (variableName == null || variableName.trim().isEmpty()) {
             throw new IllegalArgumentException("Variable name cannot be null or empty");
@@ -29,12 +23,7 @@ public class Condition {
         this.negated = negated;
     }
     
-    /**
-     * Creates a non-negated condition.
-     * 
-     * @param variableName the name of the linguistic variable
-     * @param fuzzySetName the name of the fuzzy set
-     */
+
     public Condition(String variableName, String fuzzySetName) {
         this(variableName, fuzzySetName, false);
     }
@@ -50,14 +39,7 @@ public class Condition {
     public boolean isNegated() {
         return negated;
     }
-    
-    /**
-     * Evaluates this condition given a membership degree.
-     * If negated, returns 1 - membership.
-     * 
-     * @param membership the membership degree
-     * @return the evaluated membership degree
-     */
+
     public double evaluate(double membership) {
         return negated ? (1.0 - membership) : membership;
     }
