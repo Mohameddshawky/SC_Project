@@ -1,32 +1,39 @@
-# Java Genetic Algorithm Library
+# Java Computational Intelligence Library (Genetic Algorithms & Fuzzy Logic)
 
-A flexible and extensible Java library for building Genetic Algorithms (GAs). Designed with Clean Code, SOLID principles, and a clear separation of concerns to allow easy customization and extension for solving various optimization problems.
+A flexible and extensible Java library for building Genetic Algorithms (GAs) and Fuzzy Logic Systems. Designed with Clean Code, SOLID principles, and a clear separation of concerns to allow easy customization and extension.
 
 ## 1. Architecture Overview
 
-This library is built upon a modular, strategy-based architecture. The core `GeneticAlgorithm` engine is decoupled from the specific implementation details of its components, such as selection, crossover, and mutation. This is achieved by programming to interfaces (Dependency Inversion), making the system highly configurable and adhering to the Open/Closed Principle.
+This library is built upon a modular, strategy-based architecture.
 
-- **Strategy Pattern**: Core GA operations (Selection, Crossover, Mutation, Replacement) are modeled as interchangeable strategies. You can plug in existing implementations or create new ones without modifying the GA engine.
-- **Generics**: The `Chromosome` interface uses generics (`Chromosome<T>`) to provide type safety for different gene types (e.g., `Boolean` for binary, `Integer` for integer).
-- **Separation of Concerns**: Each package has a distinct responsibility, promoting high cohesion and low coupling. Problem-specific logic (like fitness evaluation) is completely separated from the core GA workflow.
+- **Genetic Algorithms**: The core `GeneticAlgorithm` engine is decoupled from specific implementations of selection, crossover, and mutation using the Strategy Pattern.
+- **Fuzzy Logic**: The FL module follows a clean architecture, separating linguistic variables, rules, inference engines, and defuzzifiers. It supports Mamdani inference and is easily extensible.
 
 ## 2. Package Structure
 
-The project follows a standard Maven/Gradle directory layout. All library code resides within the `ga` package.
+The project follows a standard Maven/Gradle directory layout.
 
 ```
 src/main/java/
-└── ga/
-    ├── case_study/      # Example problem implementations.
-    ├── chromosome/      # Defines chromosome structures and types.
-    ├── core/            # Core GA engine, configuration, and data structures.
-    ├── crossover/       # Crossover (recombination) strategies.
-    ├── evaluation/      # Fitness evaluation and feasibility handling.
-    ├── mutation/        # Mutation strategies.
-    ├── population/      # Population and individual management.
-    ├── replacement/     # Offspring replacement strategies.
-    ├── selection/       # Parent selection strategies.
-    └── utils/           # Utility classes.
+├── ga/                  # Genetic Algorithm Library
+│   ├── case_study/      # Example GA implementations
+│   ├── chromosome/      # Chromosome structures (Binary, Integer, etc.)
+│   ├── core/            # Core GA engine and config
+│   ├── crossover/       # Crossover strategies
+│   ├── evaluation/      # Fitness evaluation interfaces
+│   ├── mutation/        # Mutation strategies
+│   ├── population/      # Population management
+│   ├── replacement/     # Replacement strategies
+│   ├── selection/       # Selection strategies
+│   └── utils/           # GA utilities
+└── fl/                  # Fuzzy Logic Library
+    ├── defuzzification/ # Defuzzification methods (Centroid, etc.)
+    ├── inference/       # Inference engines (Mamdani, Sugeno)
+    ├── membership/      # Membership functions (Triangular, Trapezoidal)
+    ├── operators/       # Logic operators (T-Norms, S-Norms)
+    ├── rule/            # Rules, Antecedents, Consequents
+    ├── utils/           # FL utilities
+    └── variable/        # Linguistic variables and fuzzy sets
 ```
 
 ## Installation
@@ -35,153 +42,156 @@ To use this library in your project, you can add it as a dependency using Maven 
 
 ### Maven
 
-Add the following to your `pom.xml` file:
-
 ```xml
 <dependency>
     <groupId>com.your-group</groupId>
-    <artifactId>java-ga-library</artifactId>
+    <artifactId>java-ci-library</artifactId>
     <version>1.0.0</version>
 </dependency>
 ```
 
 ### Gradle
 
-Add the following to your `build.gradle` file:
-
 ```groovy
 dependencies {
-    implementation 'com.your-group:java-ga-library:1.0.0'
+    implementation 'com.your-group:java-ci-library:1.0.0'
 }
 ```
 
-**Note:** Please replace `1.0.0` with the desired version of the library.
+---
 
-## 3. Core Components (Classes & Interfaces)
+# Part 1: Genetic Algorithms
+
+## 3. GA: Core Components
 
 ### `ga.chromosome`
-- **`Chromosome<T>` (Interface)**: Represents a generic chromosome, which is a potential solution to the problem. It defines the contract for all chromosome types.
-- **`BinaryChromosome`**: A `Chromosome<Boolean>` implementation for binary-encoded problems.
-- **`IntegerChromosome`**: A `Chromosome<Integer>` implementation for integer-based problems.
-- **`FloatingPointChromosome`**: A `Chromosome<Double>` implementation for floating-point problems.
+- **`Chromosome<T>` (Interface)**: Represents a generic chromosome.
+- **`BinaryChromosome`**, **`IntegerChromosome`**, **`FloatingPointChromosome`**: Concrete implementations.
 
 ### `ga.population`
-- **`Individual`**: A wrapper for a `Chromosome` that stores its fitness value.
-- **`Population`**: A collection of `Individual` objects that represents one generation.
+- **`Individual`**: Wrapper for a chromosome and its fitness.
+- **`Population`**: Collection of individuals.
 
 ### `ga.evaluation`
-- **`Evaluation` (Interface)**: The contract for fitness evaluation. It must be implemented by the user to define the problem's objective function.
-- **`Infeasibility` (Interface)**: A contract for handling constraints. Implement this to penalize or discard invalid solutions.
+- **`Evaluation` (Interface)**: Contract for fitness evaluation (User implemented).
+- **`Infeasibility` (Interface)**: Contract for handling constraints.
 
 ### `ga.selection`
-- **`Selection` (Interface)**: The strategy interface for selecting parent individuals for reproduction.
+- **`Selection` (Interface)**: Strategy for selecting parents.
 - *Implementations*: `RouletteWheelSelection`, `TournamentSelection`.
 
 ### `ga.crossover`
-- **`Crossover` (Interface)**: The strategy interface for combining the genetic material of two parents to create offspring.
+- **`Crossover` (Interface)**: Strategy for recombination.
 - *Implementations*: `OnePointCrossover`, `TwoPointCrossover`, `UniformCrossover`.
 
 ### `ga.mutation`
-- **`Mutation` (Interface)**: The strategy interface for randomly altering a chromosome's genes to introduce diversity.
+- **`Mutation` (Interface)**: Strategy for mutation.
 - *Implementations*: `BinaryMutation`, `IntegerMutation`, `FloatingPointMutation`.
 
 ### `ga.replacement`
-- **`Replacement` (Interface)**: The strategy interface for deciding which individuals from the current and offspring populations will survive to the next generation.
+- **`Replacement` (Interface)**: Strategy for survivor selection.
 - *Implementations*: `ElitismReplacement`, `GenerationalReplacement`, `SteadyStateReplacement`.
 
-### `ga.core`
-- **`GAConfig`**: A simple data class to hold all configuration parameters for the GA, such as population size, mutation rate, crossover rate, number of generations, and the selected strategies.
-- **`GeneticAlgorithm`**: The main engine that orchestrates the entire evolutionary process. It is configured with a `GAConfig` object and runs the main loop: evaluation -> selection -> crossover -> mutation -> replacement.
+## 4. GA: How to Use
 
-### `ga.utils`
-- **`RandomUtils`**: A utility class for generating random numbers, intended to be used across the library for consistency.
-
-## 4. How to Use the Library
-
-To solve a problem using this library, you need to follow these steps:
-
-1.  **Define Your Chromosome**: Choose one of the existing `Chromosome` implementations (`Binary`, `Integer`, `FloatingPoint`) that best represents your problem's solution encoding.
-
-2.  **Implement the Evaluation Interface**: This is the most critical step. Create a class that implements the `Evaluation` interface. Inside the `calculateFitness` method, you will write the logic to assess how good a given chromosome is.
-
-3.  **Implement the Infeasibility Interface (Optional)**: If your problem has constraints (e.g., a solution cannot exceed a certain weight), create a class that implements `Infeasibility` to check for and handle these cases.
-
-4.  **Configure the Genetic Algorithm**:
-    - Instantiate the strategy objects you want to use (e.g., `TournamentSelection`, `OnePointCrossover`, `BinaryMutation`, `ElitismReplacement`).
-    - Create an instance of your custom `Evaluation` implementation.
-    - Create a `GAConfig` object and set all the parameters: population size, generations, and the strategy instances.
-
-5.  **Instantiate and Run the GA**:
-    - Create an instance of the `GeneticAlgorithm` class, passing the `GAConfig` object to its constructor.
-    - Call the `run()` method to start the evolution.
-    - Get the best solution found by calling `getBestIndividual()`.
-
-## 5. Extending the Library
-
-The library is designed for easy extension.
-
--   **Adding a New Strategy**: To add a new Crossover, Selection, Mutation, or Replacement strategy, simply create a new class that implements the corresponding interface (e.g., `public class MyAwesomeCrossover implements Crossover`). You can then plug it into the `GAConfig` just like any other strategy.
-
--   **Adding a New Chromosome Type**: To support a new type of gene (e.g., `String`), create a new class that implements the `Chromosome<String>` interface. You will also likely need to create corresponding `Mutation` and `Crossover` strategies that can operate on this new chromosome type.
-
-## 6. Example: Solving a Custom Problem (Conceptual)
-
-Let's imagine you want to solve the **Traveling Salesman Problem (TSP)**.
-
-1.  **Problem Representation**: You decide that a solution can be represented as a permutation of city IDs. You would choose `IntegerChromosome` to store the sequence of cities.
-
-2.  **Fitness Evaluation**: You would create a `TSPEvaluation` class:
+1.  **Define Your Chromosome**: Choose `Binary`, `Integer`, or `FloatingPoint`.
+2.  **Implement Evaluation**: Create a class implementing `Evaluation<T>`.
+3.  **Configure GA**:
     ```java
-    // User-defined class
-    public class TSPEvaluation implements Evaluation<Integer> {
-        private Map<Integer, CityCoordinates> cityData;
-
-        public TSPEvaluation(Map<Integer, CityCoordinates> cityData) {
-            this.cityData = cityData;
-        }
-
-        @Override
-        public double calculateFitness(Chromosome<Integer> chromosome) {
-            // Logic to calculate the total distance of the tour defined by the chromosome.
-            // Lower distance = higher fitness, so return 1.0 / totalDistance.
-            double totalDistance = 0.0;
-            List<Integer> tour = chromosome.getGenes();
-            for (int i = 0; i < tour.size() - 1; i++) {
-                // Calculate distance between city tour.get(i) and tour.get(i+1)
-            }
-            // Add distance from last city back to the first
-            return 1.0 / totalDistance;
-        }
-    }
+    GAConfig config = new GAConfig();
+    config.setPopulationSize(100);
+    config.setGenerations(1000);
+    config.setSelection(new TournamentSelection());
+    config.setCrossover(new OnePointCrossover());
+    config.setMutation(new BinaryMutation());
+    config.setEvaluation(new MyEvaluation());
+    ```
+4.  **Run**:
+    ```java
+    GeneticAlgorithm ga = new GeneticAlgorithm(config);
+    ga.run();
+    Individual best = ga.getBestIndividual();
     ```
 
-3.  **Configuration and Execution**: In your `main` method, you would assemble the components.
+## 5. GA: Example (TSP)
+
+(See previous documentation for full TSP example code)
+
+---
+
+# Part 2: Fuzzy Logic
+
+## 6. FL: Core Components
+
+### `fl.variable`
+- **`LinguisticVariable`**: Represents a variable (e.g., "Temperature") with a domain and fuzzy sets.
+- **`FuzzySet`**: A linguistic term (e.g., "Hot") defined by a membership function.
+
+### `fl.membership`
+- **`MembershipFunction` (Interface)**: Defines the shape of a fuzzy set.
+- *Implementations*: `TriangularMF`, `TrapezoidalMF`, `GaussianMF`.
+
+### `fl.rule`
+- **`FuzzyRule`**: An IF-THEN rule (e.g., "IF Temp is Hot THEN Fan is Fast").
+- **`Antecedent`**: The IF part, supporting AND/OR operators.
+- **`Consequent`**: The THEN part.
+- **`RuleBase`**: A collection of fuzzy rules.
+
+### `fl.inference`
+- **`InferenceEngine` (Interface)**: Processes inputs against rules to produce fuzzy outputs.
+- *Implementations*: `MamdaniInferenceEngine`.
+
+### `fl.defuzzification`
+- **`Defuzzifier` (Interface)**: Converts fuzzy output to a crisp value.
+- *Implementations*: `CentroidDefuzzifier`, `MeanOfMaximumDefuzzifier`.
+
+## 7. FL: How to Use
+
+1.  **Setup Variables**:
     ```java
-    // User's main application
-    public static void main(String[] args) {
-        // 1. Load city data
-        Map<Integer, CityCoordinates> cityData = loadCities();
-
-        // 2. Create evaluation instance
-        Evaluation tspEvaluator = new TSPEvaluation(cityData);
-
-        // 3. Configure the GA
-        GAConfig config = new GAConfig();
-        config.setPopulationSize(100);
-        config.setGenerations(1000);
-        config.setSelection(new TournamentSelection());
-        config.setCrossover(new OrderCrossover()); // A custom crossover for TSP
-        config.setMutation(new SwapMutation());     // A custom mutation for TSP
-        config.setReplacement(new ElitismReplacement());
-        config.setEvaluation(tspEvaluator);
-
-        // 4. Run the GA
-        GeneticAlgorithm ga = new GeneticAlgorithm(config);
-        ga.run();
-
-        // 5. Get the best tour found
-        Individual bestSolution = ga.getBestIndividual();
-        System.out.println("Best tour: " + bestSolution.getChromosome().getGenes());
-        System.out.println("Best fitness: " + bestSolution.getFitness());
-    }
+    LinguisticVariable temp = new LinguisticVariable("Temperature", 0, 50);
+    temp.addFuzzySet(new FuzzySet("Hot", new TriangularMF(30, 50, 50)));
     ```
+
+2.  **Define Rules**:
+    ```java
+    Condition ifHot = new Condition("Temperature", "Hot");
+    Consequent thenFast = new Consequent("FanSpeed", "Fast");
+    FuzzyRule rule = new FuzzyRule(new Antecedent(ifHot), thenFast);
+    
+    RuleBase ruleBase = new RuleBase();
+    ruleBase.addRule(rule);
+    ```
+
+3.  **Configure Engine**:
+    ```java
+    MamdaniInferenceEngine engine = new MamdaniInferenceEngine(
+        new MinimumTNorm(),       // AND operator
+        new MaximumSNorm(),       // OR operator
+        new MinimumImplicationOperator() // Implication
+    );
+    ```
+
+4.  **Execute Pipeline**:
+    ```java
+    // Fuzzify
+    FuzzyValue inputFuzzy = temp.fuzzify(45.0);
+    
+    // Infer
+    MamdaniInferenceResult result = engine.infer(ruleBase, inputs, ...);
+    
+    // Defuzzify
+    Defuzzifier defuzzifier = new CentroidDefuzzifier();
+    double output = defuzzifier.defuzzify(
+        result.getAggregatedMembershipFunctions().get(fanSpeed),
+        0, 100
+    );
+    ```
+
+## 8. FL: Example (Smart AC Fan Control)
+
+A complete case study implementing a Smart AC Fan Control system is available in `src/main/java/casestudy/acfan`.
+
+- **`ACFanControlSystem.java`**: Encapsulates the fuzzy logic system setup.
+- **`ACFanDemo.java`**: Runs multiple scenarios.
+- **`ACFanPipelineTest.java`**: Demonstrates the full pipeline with intermediate value inspection.
