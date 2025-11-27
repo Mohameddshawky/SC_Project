@@ -92,6 +92,6 @@ public class MamdaniInferenceEngine implements InferenceEngine<RuleBase> {
             outputFuzzyValues.put(outputVar, resultFuzzyValue);
         }
 
-        return new MamdaniInferenceResult(outputFuzzyValues);
+        return new MamdaniInferenceResult(outputFuzzyValues, aggregatedMFs);
     }
 }
