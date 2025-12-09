@@ -1,4 +1,4 @@
-package src.main.java.casestudy.acfan;
+package src.main.java.fl.casestudy.acfan;
 
 import src.main.java.fl.defuzzification.CentroidDefuzzifier;
 import src.main.java.fl.defuzzification.Defuzzifier;

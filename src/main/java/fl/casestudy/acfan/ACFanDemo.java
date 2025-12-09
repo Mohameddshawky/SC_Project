@@ -1,4 +1,4 @@
-package src.main.java.casestudy.acfan;
+package src.main.java.fl.casestudy.acfan;
 
 /**
  * Demonstration of the Smart AC Fan Control System.

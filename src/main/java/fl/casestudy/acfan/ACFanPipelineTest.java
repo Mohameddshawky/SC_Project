@@ -1,4 +1,4 @@
-package src.main.java.casestudy.acfan;
+package src.main.java.fl.casestudy.acfan;
 
 import src.main.java.fl.defuzzification.CentroidDefuzzifier;
 import src.main.java.fl.defuzzification.Defuzzifier;
@@ -276,27 +276,35 @@ public class ACFanPipelineTest {
     private static RuleBase setupRuleBase() {
         RuleBase ruleBase = new RuleBase();
         
-        ruleBase.addRule(createRule("Cold", "Low", "Slow"));
-        ruleBase.addRule(createRule("Cold", "Medium", "Slow"));
-        ruleBase.addRule(createRule("Cold", "High", "Moderate"));
-        ruleBase.addRule(createRule("Warm", "Low", "Moderate"));
-        ruleBase.addRule(createRule("Warm", "Medium", "Moderate"));
-        ruleBase.addRule(createRule("Warm", "High", "Fast"));
-        ruleBase.addRule(createRule("Hot", "Low", "Fast"));
-        ruleBase.addRule(createRule("Hot", "Medium", "Fast"));
-        ruleBase.addRule(createRule("Hot", "High", "Fast"));
+        ruleBase.addRule(createRule("Cold", "Low", "Slow",1));
+        ruleBase.addRule(createRule("Cold", "Medium", "Slow",1));
+        ruleBase.addRule(createRule("Cold", "High", "Moderate",1));
+        ruleBase.addRule(createRule("Warm", "Low", "Moderate",1));
+        ruleBase.addRule(createRule("Warm", "Medium", "Moderate",1));
+        ruleBase.addRule(createRule("Warm", "High", "Fast",1));
+        ruleBase.addRule(createRule("Hot", "Low", "Fast",1));
+        ruleBase.addRule(createRule("Hot", "Medium", "Fast",1));
+        ruleBase.addRule(createRule("Hot", "High", "Fast",1));
+        ruleBase.addRule(createRule("Hot" , "Medium", "Fast",0));
         
         return ruleBase;
     }
     
-    private static FuzzyRule createRule(String tempSet, String humSet, String speedSet) {
+    private static FuzzyRule createRule(String tempSet, String humSet, String speedSet , int x) {
         Condition tempCondition = new Condition("Temperature", tempSet);
         Condition humCondition = new Condition("Humidity", humSet);
-        
-        Antecedent antecedent = new Antecedent(
+        Antecedent antecedent;
+        if(x==1)
+         antecedent = new Antecedent(
             Arrays.asList(tempCondition, humCondition),
             Antecedent.Operator.AND
         );
+        else {
+             antecedent = new Antecedent(
+                    Arrays.asList(tempCondition, humCondition),
+                    Antecedent.Operator.OR
+            );
+        }
         
         Consequent consequent = new Consequent("FanSpeed", speedSet);
         
